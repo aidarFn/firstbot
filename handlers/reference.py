@@ -79,3 +79,19 @@ async def view_balance(call: types.CallbackQuery,
         chat_id=call.from_user.id,
         text=f'Your balance: {user["BALANCE"]}'
     )
+
+
+# @router.callback_query(lambda call: call.data == "reference_list")
+# async def view_list(call: types.CallbackQuery,
+#                     db=AsyncDatabase()):
+#     await db.execute_query(
+#         query=sql_queries.SELECT_REFERENCE_QUERY,
+#         params=(
+#             call.from_user.id,
+#         ),
+#         fetch='one'
+#     )
+#     await bot.send_message(
+#         chat_id=call.from_user.id,
+#         text=f'{user['OWNER_TELEGRAM_ID']}'
+#     )
