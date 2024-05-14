@@ -70,3 +70,21 @@ async def like_detect_call(call: types.CallbackQuery,
         fetch='none'
     )
     await random_profiles_call(call=call)
+
+
+@router.callback_query(lambda call: 'dislike' in call.data)
+async def like_detect_call(call: types.CallbackQuery,
+                           db=AsyncDatabase()):
+    owner_tg_id = call.data.replace('dislike', '')
+
+    await db.execute_query(
+        query=sql_queries.INSERT_LIKE_QUERY,
+        params=(
+            None,
+            owner_tg_id,
+            call.from_user.id,
+            0
+        ),
+        fetch='none'
+    )
+    await random_profiles_call(call=call)
