@@ -6,7 +6,7 @@ from aiogram import Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-from aiogram.types import FSInputFile, user
+from aiogram.types import FSInputFile
 from aiogram.utils.deep_linking import create_start_link
 
 from config import bot, ADMIN_ID, MEDIA_PATH
@@ -68,7 +68,7 @@ async def reference_link_creation(call: types.CallbackQuery,
 @router.callback_query(lambda call: call.data == "reference_balance")
 async def view_balance(call: types.CallbackQuery,
                        db=AsyncDatabase()):
-    await db.execute_query(
+    user = await db.execute_query(
         query=sql_queries.SELECT_USER_QUERY,
         params=(
             call.from_user.id,
@@ -77,7 +77,7 @@ async def view_balance(call: types.CallbackQuery,
     )
     await bot.send_message(
         chat_id=call.from_user.id,
-        text=f'Your balance: {user["BALANCE"]}'
+        text=f"Your balance: {user['BALANCE']}"
     )
 
 

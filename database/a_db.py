@@ -15,6 +15,7 @@ class AsyncDatabase:
             await db.execute(sql_queries.CREATE_PROFILE_TABLE_QUERY)
             await db.execute(sql_queries.CREATE_LIKE_DISLIKE_TABLE_QUERY)
             await db.execute(sql_queries.CREATE_TABLE_REFERENCE_QUERY)
+            await db.execute(sql_queries.CREATE_DONATE_TRANSACTIONS_TABLE_QUERY)
 
             try:
                 await db.execute(sql_queries.ALTER_TABLE_USER_QUERY_V1)

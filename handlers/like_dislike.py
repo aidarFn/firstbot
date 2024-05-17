@@ -47,10 +47,10 @@ async def random_profiles_call(call: types.CallbackQuery,
 
         )
     else:
-        # await bot.send_message(
-        #     chat_id=call.from_user.id,
-        #     text='You have liked all profiles, come later!'
-        # )
+        await bot.send_message(
+            chat_id=call.from_user.id,
+            text='You have liked all profiles, come later!'
+        )
         return
 
 
