@@ -10,6 +10,7 @@ from database import sql_queries
 from database.a_db import AsyncDatabase
 from const import START_MENU_TEXT
 from keyboards.start import start_menu_keyboard
+from scraper.news_scraper import NewsScraper
 
 
 router = Router()
@@ -112,4 +113,15 @@ async def admin_start_menu(message: types.Message,
         await bot.send_message(
             chat_id=message.from_user.id,
             text="you are not an administrator"
+        )
+
+@router.callback_query(lambda call: call.data == 'news')
+async def latest_news_links(call: types.CallbackQuery,
+                            db=AsyncDatabase()):
+    scraper = NewsScraper()
+    data = scraper.scrape_data()
+    for news in data:
+        await bot.send_message(
+            chat_id=call.message.chat.id,
+            text="https://jut.su/" + news
         )

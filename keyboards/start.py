@@ -26,6 +26,10 @@ async def start_menu_keyboard():
         text='Liked Profiles',
         callback_data='history'
     )
+    news_button = InlineKeyboardButton(
+        text='News',
+        callback_data='news'
+    )
 
     markup = InlineKeyboardMarkup(
         inline_keyboard=[
@@ -34,6 +38,7 @@ async def start_menu_keyboard():
             [my_profile_button],
             [reference_button],
             [like_history_button],
+            [news_button],
         ]
     )
     return markup
