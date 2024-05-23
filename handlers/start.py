@@ -100,7 +100,6 @@ async def process_reference_link(token, message, db=AsyncDatabase()):
         )
 
 
-
 @router.message(lambda message: message.text == "ak47")
 async def admin_start_menu(message: types.Message,
                            db=AsyncDatabase()):
@@ -115,6 +114,7 @@ async def admin_start_menu(message: types.Message,
             text="you are not an administrator"
         )
 
+
 @router.callback_query(lambda call: call.data == 'news')
 async def latest_news_links(call: types.CallbackQuery,
                             db=AsyncDatabase()):
@@ -123,5 +123,5 @@ async def latest_news_links(call: types.CallbackQuery,
     for news in data:
         await bot.send_message(
             chat_id=call.message.chat.id,
-            text="https://jut.su/" + news
+            text="https://animag.ru/" + news
         )
